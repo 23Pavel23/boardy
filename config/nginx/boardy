@@ -1,14 +1,22 @@
-server {
+server {rewrite ^(/.well-known/acme-challenge/.*) $1 break; # managed by Certbot
 
-listen 80;
+
 
 server_name pablo52.ai-info.ru;
 
+add_header Strict-Transport-Security "max-age=31536000" always;
 
 root /var/www/boardy;
 
 index index.html;
 
+location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg)$ {
+
+expires 7d;
+
+add_header Cache-Control "public, no-transform";
+
+}
 
 access_log /var/log/nginx/boardy-access.log;
 
@@ -24,5 +32,32 @@ try_files $uri $uri/ =404;
 
 error_page 404 /404.html;
 
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/pablo52.ai-info.ru/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/pablo52.ai-info.ru/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+location = /.well-known/acme-challenge/Onqrt9mIct0N1FAnIP8xL6md6ESgxVZsFBvLbRxu5As{default_type text/plain;return 200 Onqrt9mIct0N1FAnIP8xL6md6ESgxVZsFBvLbRxu5As.R1TDmQkGKwnJovZLKLwhqkCJ4Ig0LoAdFXBs35l12x4;} # managed by Certbot
+
 }
 
+server {rewrite ^(/.well-known/acme-challenge/.*) $1 break; # managed by Certbot
+
+
+    if ($host = pablo52.ai-info.ru) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+listen 80;
+
+server_name pablo52.ai-info.ru;
+    return 404; # managed by Certbot
+
+
+location = /.well-known/acme-challenge/Onqrt9mIct0N1FAnIP8xL6md6ESgxVZsFBvLbRxu5As{default_type text/plain;return 200 Onqrt9mIct0N1FAnIP8xL6md6ESgxVZsFBvLbRxu5As.R1TDmQkGKwnJovZLKLwhqkCJ4Ig0LoAdFXBs35l12x4;} # managed by Certbot
+
+}
