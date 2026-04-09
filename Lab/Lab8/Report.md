@@ -1,74 +1,106 @@
-## Часть A. PHP-FPM
+## Часть A. MySQL — установка и настройка
 
-### Задание 1. Установка PHP-FPM
+### Задание 1. Установка MySQL
 
-![Версия PHP и статус PHP-FPM](screenshots/01-php-version.png)
+![01-mysql-status](01-mysql-status.png)
 
-### Задание 2. Форма и сообщения на PHP
+### Задание 2. База данных и пользователь
 
-![Отправка формы](screenshots/02-php-form.png)
+![02-db-charset](02-db-charset.png)
 
-![Таблица сообщений](screenshots/03-php-messages.png)
+**Вопросы отчёта:**
 
-### Задание 3. Конфиг Nginx для PHP
+- **Почему utf8mb4, а не utf8?**  
+  `utf8` в MySQL поддерживает только 3 байта на символ, не хватает для эмодзи. `utf8mb4` — полная поддержка Unicode (4 байта).
 
-![Конфиг Nginx с fastcgi_pass](screenshots/04-nginx-php.png)
+- **Что такое collation и зачем unicode_ci?**  
+  Collation — правила сравнения строк. `ci` = case insensitive (регистронезависимо). `unicode_ci` даёт точную сортировку для разных языков.
 
-### Задание 4. Shared nothing
+### Задание 3. phpMyAdmin
 
-![Три вызова счётчика](screenshots/05-shared-nothing.png)
-
-### Задание 5. Блокировка воркеров
-
-![10 параллельных запросов](screenshots/06-php-slow.png)
+![03-phpmyadmin](03-phpmyadmin.png)
 
 ---
 
-## Часть B. FastAPI
+## Часть B. Таблицы и связи
 
-### Задание 6. Установка и приложение
+### Задание 4. Три таблицы
 
-![API статус](screenshots/07-api-status.png)
+![04-tables-cli](04-tables-cli.png)
 
-![API сообщения](screenshots/08-api-messages.png)
+![05-tables-pma](05-tables-pma.png)
 
-### Задание 7. Живой процесс (счётчик)
+**Вопросы отчёта:**
 
-![Счётчик растёт](screenshots/09-counter.png)
+- **Что такое FOREIGN KEY и ON DELETE CASCADE?**  
+  FOREIGN KEY — связь между таблицами для целостности данных. ON DELETE CASCADE — при удалении родительской записи удаляются все дочерние.
 
-### Задание 8. Async: 10 запросов за 2 секунды
+- **Какой движок используется и почему?**  
+  InnoDB — единственный движок в MySQL, поддерживающий FOREIGN KEY и транзакции (ACID).
 
-![10 асинхронных запросов](screenshots/10-async-slow.png)
+### Задание 5. SQL-скрипт
 
-### Задание 9. Блокирующий код убивает event loop
-
-![5 блокирующих запросов](screenshots/11-blocking.png)
-
-### Задание 10. Swagger
-
-![Swagger документация](screenshots/12-swagger.png)
-
-### Задание 11. systemd-сервис
-
-![Статус сервиса](screenshots/13-systemd.png)
-
-### Задание 12. Nginx proxy_pass
-
-![Конфиг с proxy_pass](screenshots/14-nginx-api.png)
+![06-schema-sql](06-schema-sql.png)
 
 ---
 
-## Часть C. Сравнение
+## Часть C. SQL — базовые операции
 
-### Задание 13. Два формата
+### Задание 6. INSERT
 
-![HTML vs JSON](screenshots/15-compare.png)
+![07-data-cli](07-data-cli.png)
 
-### Задание 14. Процессы
+![08-data-pma](08-data-pma.png)
 
-![Процессы PHP-FPM и Uvicorn](screenshots/16-processes.png)
+### Задание 7. SELECT + JOIN
+
+![09-join](09-join.png)
+
+**Вопросы отчёта:**  
+JOIN нужен, чтобы объединить данные из двух таблиц в одном запросе. Без JOIN пришлось бы делать два отдельных запроса.
+
+### Задание 8. Foreign Key — защита целостности
+
+![10-fk-error](10-fk-error.png)
+
+### Задание 9. CASCADE
+
+![11-cascade](11-cascade.png)
+
+### Задание 10. SQL-инъекция
+
+![12-injection](12-injection.png)
+
+**Вопросы отчёта:**  
+SQL-инъекция — подстановка вредоносного SQL-кода в запрос. Prepared statement защищает, так как данные передаются отдельно от кода запроса.
 
 ---
+
+## Часть D. PHP + MySQL
+
+### Задание 11. db.php
+
+![13-db-php](13-db-php.png)
+
+### Задание 12. submit.php
+
+![14-submit](14-submit.png)
+
+![15-submit-pma](15-submit-pma.png)
+
+### Задание 13. messages.php
+
+![16-messages](16-messages.png)
+
+---
+
+## Часть E. FastAPI + MySQL
+
+### Задание 14. aiomysql
+
+![17-api-messages](17-api-messages.png)
+
+![18-api-users](18-api-users.png)
 
 ## Ответы на вопросы
 
