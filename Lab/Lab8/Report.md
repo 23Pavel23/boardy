@@ -1,24 +1,22 @@
+---
+
 ## Часть A. MySQL — установка и настройка
 
 ### Задание 1. Установка MySQL
 
-![01-mysql-status](01-mysql-status.png)
+![01-mysql-status](screenshots/01-mysql-status.png)
 
 ### Задание 2. База данных и пользователь
 
-![02-db-charset](02-db-charset.png)
+![02-db-charset](screenshots/02-db-charset.png)
 
-**Вопросы отчёта:**
-
-- **Почему utf8mb4, а не utf8?**  
-  `utf8` в MySQL поддерживает только 3 байта на символ, не хватает для эмодзи. `utf8mb4` — полная поддержка Unicode (4 байта).
-
-- **Что такое collation и зачем unicode_ci?**  
-  Collation — правила сравнения строк. `ci` = case insensitive (регистронезависимо). `unicode_ci` даёт точную сортировку для разных языков.
+**Вопросы:**
+- **utf8mb4 вместо utf8?** utf8 в MySQL только 3 байта, эмодзи не влезают. utf8mb4 — полный Unicode (4 байта).
+- **Collation unicode_ci?** Правила сравнения строк. ci = case insensitive (регистронезависимо).
 
 ### Задание 3. phpMyAdmin
 
-![03-phpmyadmin](03-phpmyadmin.png)
+![03-phpmyadmin](screenshots/03-phpmyadmin.png)
 
 ---
 
@@ -26,53 +24,45 @@
 
 ### Задание 4. Три таблицы
 
-![04-tables-cli](04-tables-cli.png)
+![04-tables-cli](screenshots/04-tables-cli.png)
+![05-tables-pma](screenshots/05-tables-pma.png)
 
-![05-tables-pma](05-tables-pma.png)
-
-**Вопросы отчёта:**
-
-- **Что такое FOREIGN KEY и ON DELETE CASCADE?**  
-  FOREIGN KEY — связь между таблицами для целостности данных. ON DELETE CASCADE — при удалении родительской записи удаляются все дочерние.
-
-- **Какой движок используется и почему?**  
-  InnoDB — единственный движок в MySQL, поддерживающий FOREIGN KEY и транзакции (ACID).
+**Вопросы:**
+- **FOREIGN KEY и ON DELETE CASCADE?** Связь таблиц для целостности. CASCADE — удаление родителя удаляет детей.
+- **Движок InnoDB?** Единственный с поддержкой FOREIGN KEY и транзакций.
 
 ### Задание 5. SQL-скрипт
 
-![06-schema-sql](06-schema-sql.png)
+![06-schema-sql](screenshots/06-schema-sql.png)
 
 ---
 
-## Часть C. SQL — базовые операции
+## Часть C. SQL — операции
 
 ### Задание 6. INSERT
 
-![07-data-cli](07-data-cli.png)
-
-![08-data-pma](08-data-pma.png)
+![07-data-cli](screenshots/07-data-cli.png)
+![08-data-pma](screenshots/08-data-pma.png)
 
 ### Задание 7. SELECT + JOIN
 
-![09-join](09-join.png)
+![09-join](screenshots/09-join.png)
 
-**Вопросы отчёта:**  
-JOIN нужен, чтобы объединить данные из двух таблиц в одном запросе. Без JOIN пришлось бы делать два отдельных запроса.
+**Зачем JOIN?** Объединяет данные из двух таблиц в одном запросе. Без JOIN — два отдельных запроса.
 
-### Задание 8. Foreign Key — защита целостности
+### Задание 8. Foreign Key ошибка
 
-![10-fk-error](10-fk-error.png)
+![10-fk-error](screenshots/10-fk-error.png)
 
 ### Задание 9. CASCADE
 
-![11-cascade](11-cascade.png)
+![11-cascade](screenshots/11-cascade.png)
 
 ### Задание 10. SQL-инъекция
 
-![12-injection](12-injection.png)
+![12-injection](screenshots/12-injection.png)
 
-**Вопросы отчёта:**  
-SQL-инъекция — подстановка вредоносного SQL-кода в запрос. Prepared statement защищает, так как данные передаются отдельно от кода запроса.
+**Как работает инъекция?** Подстановка вредоносного SQL-кода. Prepared statement защищает — данные отдельно от кода.
 
 ---
 
@@ -80,17 +70,16 @@ SQL-инъекция — подстановка вредоносного SQL-к�
 
 ### Задание 11. db.php
 
-![13-db-php](13-db-php.png)
+![13-db-php](screenshots/13-db-php.png)
 
 ### Задание 12. submit.php
 
-![14-submit](14-submit.png)
-
-![15-submit-pma](15-submit-pma.png)
+![14-submit](screenshots/14-submit.png)
+![15-submit-pma](screenshots/15-submit-pma.png)
 
 ### Задание 13. messages.php
 
-![16-messages](16-messages.png)
+![16-messages](screenshots/16-messages.png)
 
 ---
 
@@ -98,9 +87,8 @@ SQL-инъекция — подстановка вредоносного SQL-к�
 
 ### Задание 14. aiomysql
 
-![17-api-messages](17-api-messages.png)
-
-![18-api-users](18-api-users.png)
+![17-api-messages](screenshots/17-api-messages.png)
+![18-api-users](screenshots/18-api-users.png)
 
 ## Ответы на вопросы
 
