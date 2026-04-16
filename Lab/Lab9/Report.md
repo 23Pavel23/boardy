@@ -124,8 +124,4 @@ DELETE — 204 (удалили, нет содержимого)
 | Защита от XSS | Ручная (htmlspecialchars) | Ручная (esc()) | Автоматическая |
 | Сложность кода | Средняя | Высокая | Средняя |
 
-## Часть D. Pull Request
 
-### Задание 15. PR на GitHub
-
-![16-pull-request](screenshots/16-pull-request.png)
