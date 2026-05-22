@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -25,7 +27,20 @@ class PostController extends Controller
             'body' => 'required|string',
         ]);
 
-        $request->user()->posts()->create($data);
+        $post = $request->user()->posts()->create($data);
+
+        // WebSocket broadcast через FastAPI
+        try {
+            Http::timeout(2)->post('http://localhost:8000/internal/broadcast', [
+                'id' => $post->id,
+                'title' => $post->title,
+                'body' => $post->body,
+                'author' => $request->user()->name,
+                'created_at' => $post->created_at->toISOString(),
+            ]);
+        } catch (\Exception $e) {
+            Log::warning('WS broadcast failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('posts.index')->with('success', 'Пост создан');
     }

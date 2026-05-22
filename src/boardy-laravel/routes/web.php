@@ -8,7 +8,7 @@ Route::get('/', function () {
     return redirect()->route('posts.index');
 });
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->middleware('auth');
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 
 require __DIR__.'/auth.php';
