@@ -1,12 +1,12 @@
 import aiomysql
 
 DB_CONFIG = {
-    'host': '127.0.0.1',
+    'host': 'localhost',
     'port': 3306,
     'user': 'pablo52',
     'password': 'Piano@123',
-    'db': 'boardy',
-    'charset': 'utf8mb4',
+    'db': 'boardy_api',
+    'charset': 'utf8mb4'
 }
 
 async def get_db():
