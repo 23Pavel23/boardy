@@ -97,7 +97,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        run: pip install -r src/boardy-api/requirements.txt pytest requests -q
+        run: pip install fastapi pytest httpx -q
       - name: Run pytest
         working-directory: ./src/boardy-api
         run: pytest tests/test_health.py -v
