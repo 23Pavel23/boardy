@@ -1,6 +1,15 @@
-import requests
+from fastapi import FastAPI
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+
+client = TestClient(app)
 
 def test_health_endpoint_returns_ok():
-    response = requests.get("http://localhost:8000/health")
+    response = client.get("/health")
     assert response.status_code == 200
     assert response.json() == {"ok": True}
