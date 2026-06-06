@@ -15,3 +15,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/auth/github', [App\Http\Controllers\Auth\GitHubController::class, 'redirect'])->name('auth.github');
 Route::get('/auth/github/callback', [App\Http\Controllers\Auth\GitHubController::class, 'callback']);
+Route::get('/health', fn () => response()->json(['ok' => true]));

@@ -64,3 +64,11 @@ app.include_router(ws.router)
 @app.get('/api/status')
 async def status():
     return {'status': 'ok', 'time': str(datetime.now())}
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+
+@app.get("/api/health")
+def api_health():
+    return {"ok": True}
