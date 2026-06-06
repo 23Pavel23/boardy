@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_PREFIX: ghcr.io/${{ github.repository }}
+  IMAGE_PREFIX: ghcr.io/23pavel23/boardy
 
 jobs:
   lint:
